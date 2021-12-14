@@ -1,0 +1,219 @@
+<html xmlns="http://www.w3.org/1999/html">
+<body>
+<div data-target="readme-toc.content" class="Box-body px-5 pb-5">
+    <article class="markdown-body entry-content container-lg" itemprop="text"><h1 dir="auto">Desafio Backend Drip</h1>
+        <h3 dir="auto">Resumo</h3>
+        <p dir="auto">Criar uma aplicação que sirva uma API Rest para converter timezones.</p>
+        <ul dir="auto">
+            <li>Criar um endpoint para receber uma lista de timezones e mostrar a conversão entre todas elas (24 horas) levando em conta a hora 00:00
+                <ul dir="auto">
+                    <li>O timezone padrão deve ser o UTC.</li>
+                    <li>Requisição esperada:
+                        <div class="snippet-clipboard-content position-relative overflow-auto"><pre><code>{
+    "timezones": [
+        "America/Rio_Branco",
+        "Antarctica/Mawson",
+        "Asia/Chita"
+    ]
+}
+</code></pre>
+                        </div>
+                    </li>
+                    <li>Resposta esperada:
+                        <div class="snippet-clipboard-content position-relative overflow-auto"><pre><code>[
+    {
+        "timezone": "America/Rio_Branco",
+        "utcOffset": "−05:00",
+        "time": "2021-12-16 19:00",
+        "tooEarly": false,
+        "tooLate": true
+    },
+    {
+        "timezone": "Antarctica/Mawson",
+        "utcOffset": "+05:00",
+        "time": "2021-12-17 05:00",
+        "tooEarly": true,
+        "tooLate": false
+    },
+    {
+        "timezone": "Asia/Chita",
+        "utcOffset": "+09:00",
+        "time": "2021-12-17 09:00",
+        "tooEarly": false,
+        "tooLate": false
+    }
+]
+</code></pre>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>Criar um endpoint para receber uma timezone, um horário(HH:MM) e uma lista de timezones e mostrar a
+                conversão daquele horário entre todas as timezones
+                <ul dir="auto">
+                    <li>A timezone "padrão" deve ser a recebida pelo endpoint.</li>
+                    <li>Requisição esperada:
+                        <div class="snippet-clipboard-content position-relative overflow-auto"><pre><code> {
+     "time": "12:00",
+     "timezones": [
+         "Africa/Abidjan",
+         "America/Sao_Paulo",
+         "America/Port-au-Prince"
+     ]
+ }
+</code></pre>
+                        </div>
+                    </li>
+                    <li>Resposta esperada:
+                        <div class="snippet-clipboard-content position-relative overflow-auto"><pre><code>[
+    {
+        "timezone": "Africa/Abidjan",
+        "utcOffset": "+00:00",
+        "time": "2021-12-17 12:00",
+        "tooEarly": false,
+        "tooLate": false
+    },
+    {
+        "timezone": "America/Sao_Paulo",
+        "utcOffset": "−05:00",
+        "time": "2021-12-17 07:00",
+        "tooEarly": true,
+        "tooLate": false
+    },
+    {
+        "timezone": "America/Port-au-Prince",
+        "utcOffset": "−03:00",
+        "time": "2021-12-17 09:00",
+        "tooEarly": false,
+        "tooLate": false
+    }
+]
+</code></pre>
+                        </div>
+                    </li>
+                    <li>Destacar quando um horário é "tarde demais" ou "cedo demais" em alguma timezone</li>
+                    <li>Considerar <code>&lt; 08:00</code> cedo demais e <code>&gt; 18:00</code> tarde demais</li>
+                </ul>
+            </li>
+        </ul>
+        <h3 dir="auto">Banco de dados</h3>
+        <p dir="auto">O banco de dados para o desafio será carregado em memória e povoado assim que a aplicação estiver
+            rodando.</p>
+        <p dir="auto">Formato do banco de dados:</p>
+        <ul dir="auto">
+            <li>id: INT</li>
+            <li>name: VARCHAR</li>
+            <li>utc_offset: VARCHAR</li>
+        </ul>
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>utc_offset</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Africa/Abidjan</td>
+                <td>+00:00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Africa/Algiers</td>
+                <td>+01:00</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Africa/Bissau</td>
+                <td>+00:00</td>
+            </tr>
+            <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+</body>
+<style>
+    .Box-body:last-of-type {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    .px-5 {
+        padding-right: 32px !important;
+        padding-left: 32px !important;
+    }
+
+    .pb-5 {
+        padding-bottom: 32px !important;
+    }
+
+    .Box-body {
+        padding: 16px;
+        padding-right: 16px;
+        padding-bottom: 16px;
+        padding-left: 16px;
+        border-bottom: 1px solid var(--color-border-default);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .markdown-body {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+        font-size: 16px;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+
+    .container-lg {
+
+        max-width: 1012px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {
+        display: block;
+    }
+
+    .markdown-body > :last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .markdown-body table {
+        display: block;
+        width: 100%;
+        width: max-content;
+        max-width: 100%;
+        overflow: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    td, th {
+        border: 1px solid black;
+    }
+
+    td {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    pre {
+        background-color: rgb(235, 235, 235);
+    }
+
+</style>
+</html>
