@@ -2,18 +2,18 @@ package com.backendtest.dripbackendtest.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "timezones")
+//@Entity
+//@Table(name = "timezones")
 public class Timezone {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "name")
+//    @Column(name = "name")
     private String name;
 
-    @Column(name = "utc_offset")
+//    @Column(name = "utc_offset")
     private String utcOffset;
 
     public Timezone(String name, String utcOffset) {
