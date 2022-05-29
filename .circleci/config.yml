@@ -18,11 +18,11 @@ jobs:
           name: "run gradle clean"
           command: ./gradlew clean
       - run:
-          name: "run gradle build"
+          name: "run gradle test"
           command: ./gradlew build
       - run:
           name: "run spring app"
-          command: ./gradlew bootRun
+          command: ./gradlew test
 
 
 # Invoke jobs via workflows
