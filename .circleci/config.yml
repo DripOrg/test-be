@@ -15,8 +15,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "run mvn install"
-          command: ./mvnw test
+          name: "run gradle install"
+          command: ./gradlew build
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
