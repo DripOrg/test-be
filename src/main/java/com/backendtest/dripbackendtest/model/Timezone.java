@@ -17,7 +17,7 @@ public class Timezone {
     private String utcOffset;
 
     public Timezone(String name, String utcOffset) {
-        this.name = "error....";
+        this.name = "error.....";
         this.utcOffset = utcOffset;
     }
 
