@@ -21,7 +21,7 @@ jobs:
           name: "run gradle test"
           command: ./gradlew build
       - run:
-          name: "run spring app"
+          name: "run sprindg app"
           command: ./gradlew test
 
 
